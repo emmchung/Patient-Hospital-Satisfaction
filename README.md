@@ -1,58 +1,55 @@
-# Hospital patient satisfaction: initial data exploration
+# DS 3001 Semester Project
 
-Research question: To what extent can hospital characteristics, quality-of-care measures, clinical outcomes, and Medicare spending predict overall patient satisfaction at U.S. hospitals?
+## Project information
 
-The completed initial exploration is in `hospital_analysis.ipynb`. It loads the four supplied hospital-level CMS CSV files, displays their actual columns and sample rows, checks hospital identifiers and measure keys, identifies the satisfaction target, compares coverage and reporting periods, and examines missing values. The notebook includes computed findings, tables, and charts. A descriptive table is joined by Facility ID with one-to-one validation. Missing-value handling is completed in Section 8; no prediction models are built.
+- **Project title:** Predicting Patient Satisfaction at U.S. Hospitals
+- **Team members:** Not yet supplied.
+- **Repository URL:** https://github.com/emmchung/Patient-Hospital-Satisfaction
+- **Research question:** To what extent can hospital characteristics, quality-of-care measures, clinical outcomes, and Medicare spending predict overall patient satisfaction at U.S. hospitals?
+- **Current status:** Initial exploration and missing-value preparation complete. Prediction models, cross-validation, and the final report are not complete.
 
-## Data used
+## Repository structure
 
-| File in `data/` | Source rows |
-| --- | ---: |
-| `HCAHPS-Hospital.csv` | 325,720 |
-| `Hospital_General_Information.csv` | 5,419 |
-| `Complications_and_Deaths-Hospital.csv` | 95,800 |
-| `Medicare_Hospital_Spending_Per_Patient-Hospital.csv` | 4,626 |
+```text
+.
+├── README.md
+├── notebook.ipynb
+├── final_report.docx
+├── requirements.txt
+├── .gitignore
+└── data/
+    ├── README.md
+    ├── source_manifest.json
+    └── [four local CSV files, excluded from Git]
+```
 
-The source is the [CMS Hospital Data Catalog](https://data.cms.gov/provider-data/topics/hospitals). Local CSVs remain unchanged and are excluded from Git. File hashes in the notebook identify the analyzed downloads. Download and CMS release dates were not provided; measurement periods are inspected directly from the files.
+- [`notebook.ipynb`](notebook.ipynb) is the primary notebook, renamed from `hospital_analysis.ipynb`. It follows the template's Setup, Load data, Prepare data, Explore data, Build models, Evaluate models, Final results, and AI usage disclosure sections. The modeling sections explicitly record that those stages have not started.
+- [`final_report.docx`](final_report.docx) is the **original, unfilled course report template**, retained with its required filename and formatting. It is not a completed report and its example figure is not a project result.
+- [`data/README.md`](data/README.md) documents the provider, access method, exact input files, reporting-date limitations, and reconstruction steps. [`data/source_manifest.json`](data/source_manifest.json) records source hashes.
 
-## Selected predictors
+The layout follows the [DS 3001 project template](https://github.com/sds3001/project_template). Local adaptation does not change the existing repository's fork relationship or publish any changes.
 
-The exploration focuses only on:
+## Analysis so far
 
-- Hospital Type, Hospital Ownership, and Emergency Services.
-- Mortality, Safety, and Readmission performance: for each group, Better / (Better + No Different + Worse). Missing counts or zero denominators produce missing proportions. Source counts and reporting coverage are audited.
-- `Hybrid_HWM`, using the outcome file's `Score`.
-- `MSPB-1`, using the spending file's `Score`.
+The target is `HCAHPS Linear Mean Value` for measure `H_HSP_RATING_LINEAR_SCORE`. Selected predictors are Hospital Type, Hospital Ownership, Emergency Services, Mortality/Safety/Readmission better proportions, `Hybrid_HWM`, and `MSPB-1`. Other individual outcome measures and the overall CMS star rating are excluded from predictor analysis.
 
-The overall CMS hospital star rating, other HCAHPS predictors, and other individual clinical outcome measures are excluded. The notebook reports predictor availability, satisfaction distributions by hospital characteristics, and pairwise scatterplots and correlations for the selected numeric predictors. Descriptive results use observed values. Section 8 separately prepares data with missing-value handling; no prediction model is fitted.
+There are 5,419 reference hospitals, including 3,183 with numeric targets. Among reported target scores, the mean is 87.88 and the range is 69–98. Of these 3,183 hospitals, 571 have incomplete predictors. Missing targets are excluded from a separate supervised sample; missing numeric predictors are handled using training-only medians and indicators, and categorical gaps receive a `Missing` category. Prepared training and held-out sets contain 2,546 and 637 hospitals, respectively. The raw descriptive table remains unchanged.
 
-## Initial findings
+Scoring periods differ across sources. Associations shown in the notebook are descriptive, use observed values, and do not establish predictive accuracy or causation. For future cross-validation, use raw training data and the unfitted preprocessor inside a model pipeline, rather than cross-validating the already imputed tables.
 
-The target is `HCAHPS Linear Mean Value` for `HCAHPS Measure ID == "H_HSP_RATING_LINEAR_SCORE"`, labeled “Overall hospital rating - linear mean score”. There are 4,790 target rows with unique hospital identifiers: 3,183 numeric scores and 1,607 values labeled “Not Available”. Numeric values range from 69 to 98.
+## Getting started
 
-The intended target scale is 0–100. It is separate from a hospital star rating or a percentage of patients selecting a response category. These files contain hospital aggregates, not individual patient records.
-
-HCAHPS covers October 2024–September 2025, spending covers calendar year 2024, and outcome measures have several different reporting windows. Missingness and period differences need attention before any later modeling. Blank footnotes, unavailable scores, and structurally inapplicable fields are reported separately. Exact administrative reasons for missing scores remain unresolved without the release's footnote dictionary.
-
-These descriptive findings do not establish predictive accuracy or causation. The full tables, plots, and limitations are in the notebook.
-
-## Missing-value handling
-
-Section 8 excludes reference hospitals without numeric targets from a separate supervised sample; targets are never imputed. All hospitals with observed targets are retained, including those with missing predictors. The original descriptive dataframe remains unchanged.
-
-An 80/20 split (random seed 42) supports leakage-free preparation. Numeric predictor gaps are filled with training-only medians, with missingness indicators. Categorical gaps receive a `Missing` category. `X_train_prepared` and `X_test_prepared` have no missing values; targets are stored separately in `y_train` and `y_test`. Hospital IDs remain indices, not predictors. Categorical encoding is deferred to the modeling stage.
-
-For future cross-validation, use raw `X_train` and `y_train` with the **unfitted** `preprocessor` inside a model pipeline, and leave the test set untouched. Do not cross-validate the pre-imputed tables. The median policy does not eliminate potential bias from missing or selectively reported data. No prediction models or cross-validation have been run.
-
-## Reproduce
-
-Use Python 3.9 or later. From this folder:
+Use Python 3.9 or later. Obtain the four CSVs as documented in `data/README.md`, then run:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python -m jupyterlab hospital_analysis.ipynb
+python -m jupyterlab notebook.ipynb
 ```
 
-Select the environment's Python kernel and run all cells in order. Keep the supplied filenames in `data/`. The saved notebook includes outputs; rerunning replaces them with results from the current files. Review notebook outputs before sharing because they may include source data.
+Select the environment's Python kernel and run all cells from beginning to end. Saved outputs are included. The notebook contains an AI-use disclosure with selected actual prompts and verification details.
+
+## Before submission
+
+Team names still need to be supplied. Modeling, evaluation, and the report remain pending. Complete the course's Word template without changing its layout or filename, and link it to this repository, notebook, and data instructions. Restart the notebook kernel and run all cells before submission. Check the course's fork requirement: this existing repository has only been adapted locally; no fork, remote rewrite, commit, or push was performed.

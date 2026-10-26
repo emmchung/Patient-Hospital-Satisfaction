@@ -10,3 +10,7 @@ __pycache__/
 # Keep downloaded data local
 data/*
 !data/.gitkeep
+
+# Track data access documentation and source fingerprints
+!data/README.md
+!data/source_manifest.json

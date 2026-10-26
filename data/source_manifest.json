@@ -1,0 +1,29 @@
+{
+  "provider": "Centers for Medicare & Medicaid Services",
+  "source_url": "https://data.cms.gov/provider-data/topics/hospitals",
+  "access_method": "CSV downloads supplied by the user",
+  "download_date": null,
+  "release_date": null,
+  "files": [
+    {
+      "file": "Complications_and_Deaths-Hospital.csv",
+      "bytes": 22813123,
+      "sha256": "2f7112969e2de2a015af8574848973dc48595ca6f2fe032e5f0932c515d5f59a"
+    },
+    {
+      "file": "HCAHPS-Hospital.csv",
+      "bytes": 105461119,
+      "sha256": "b70e598f29552df302e30ed649d178abd1b3d3c868ae97cf8e55453dd33898fc"
+    },
+    {
+      "file": "Medicare_Hospital_Spending_Per_Patient-Hospital.csv",
+      "bytes": 990892,
+      "sha256": "fcb050fecedd6af494750a7e6c46d992f2b03738f1f145e4f8bf6f7bbc4c93a9"
+    },
+    {
+      "file": "Hospital_General_Information.csv",
+      "bytes": 1450767,
+      "sha256": "f874f09fef895a1ccf5bb7392dcbb2be05c9860339261b093fe00f0c1b013480"
+    }
+  ]
+}
