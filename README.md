@@ -37,6 +37,16 @@ There are 5,419 reference hospitals, including 3,183 with numeric targets. Among
 
 Scoring periods differ across sources. Associations shown in the notebook are descriptive, use observed values, and do not establish predictive accuracy or causation. For future cross-validation, use raw training data and the unfitted preprocessor inside a model pipeline, rather than cross-validating the already imputed tables.
 
+## Expanded exploratory correlation screen
+
+The notebook also screens 116 numeric/binary candidates across the four files; 109 meet the ranking rule of at least 100 paired hospitals and nonconstant values. It reports Pearson and Spearman correlations and sample sizes, using observed values rather than imputations. This additional search does not change the original selected predictors or fit models.
+
+The strongest other HCAHPS linear-score associations are recommending the hospital (Pearson r = 0.948) and nurse communication (r = 0.869), each based on 3,183 hospitals. These share the same survey and should not be presented as independent clinical predictors. Target-rating response percentages, target star ratings, the HCAHPS summary star rating, and the CMS overall hospital rating are separately flagged for overlap.
+
+Outside HCAHPS and overlapping ratings, the largest absolute Pearson correlation is the count of mortality measures rated No Different (r = -0.355, n = 3,131). This is a reporting/performance count, not a mortality rate. Clinical and spending scores show no strong individual linear associations under this screen. Different available hospital subsets and the large number of comparisons limit direct comparisons and generalization.
+
+The complete ranking, including unranked candidates and reasons, is in [`results/expanded_correlations.csv`](results/expanded_correlations.csv). See [`results/README.md`](results/README.md) for interpretation. The source CSVs remain unchanged.
+
 ## Getting started
 
 Use Python 3.9 or later. Obtain the four CSVs as documented in `data/README.md`, then run:
