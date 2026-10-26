@@ -1,0 +1,5 @@
+Hybrid mortality category,Spending category,hospitals,mean_score,median_score
+Above sample median,Above sample median,629,86.09856915739269,86.0
+Above sample median,At/below sample median,559,87.53309481216458,88.0
+At/below sample median,Above sample median,609,86.80295566502463,87.0
+At/below sample median,At/below sample median,832,88.453125,89.0

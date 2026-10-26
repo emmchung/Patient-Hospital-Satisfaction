@@ -5,7 +5,7 @@
 - **Project title:** Predicting Patient Satisfaction at U.S. Hospitals
 - **Team members:** Emma Chung, Kevin Sun, Anastacia Oliynyk.
 - **Repository URL:** https://github.com/emmchung/Patient-Hospital-Satisfaction
-- **Research question:** To what extent can hospital characteristics, quality-of-care measures, clinical outcomes, and Medicare spending predict overall patient satisfaction at U.S. hospitals?
+- **Research question:** How well do hospital characteristics, quality performance, clinical outcomes, and Medicare spending—individually and in combination—predict overall patient satisfaction at U.S. hospitals?
 - **Current status:** Initial exploration and missing-value preparation complete. Prediction models, cross-validation, and the final report are not complete.
 
 ## Repository structure
@@ -37,7 +37,22 @@ There are 5,419 reference hospitals, including 3,183 with numeric targets. Among
 
 Scoring periods differ across sources. Associations shown in the notebook are descriptive, use observed values, and do not establish predictive accuracy or causation. For future cross-validation, use raw training data and the unfitted preprocessor inside a model pipeline, rather than cross-validating the already imputed tables.
 
-## Expanded exploratory correlation screen
+## Main EDA: predictor groups and combinations
+
+The main analysis retains the original predictors in four groups:
+
+| Group | Variables |
+| --- | --- |
+| Hospital characteristics | Type, ownership, emergency services |
+| Quality performance | Mortality, Safety, and Readmission better proportions |
+| Clinical outcomes | Hybrid_HWM |
+| Medicare spending | MSPB-1 |
+
+The EDA reports coverage for all 15 nonempty group combinations, a correlation heatmap with pair counts for selected numeric predictors and the target, and observed satisfaction summaries for ownership × spending, emergency services × readmission performance, and hybrid mortality × spending. Sample-median splits are descriptive display choices, not clinical thresholds. Combination means are suppressed for fewer than 10 hospitals. Full tables are saved in `results/`.
+
+These summaries describe associations, not improvements in predictive performance or causal contributions. The next modeling stage will compare groups separately and in prespecified combinations using the same hospitals and folds. Models and cross-validation remain pending. Other HCAHPS experience measures are not part of the main predictor set; the earlier expanded search is retained only as an appendix.
+
+## Supplemental appendix: prior expanded correlation screen
 
 The notebook also screens 116 numeric/binary candidates across the four files; 109 meet the ranking rule of at least 100 paired hospitals and nonconstant values. It reports Pearson and Spearman correlations and sample sizes, using observed values rather than imputations. This additional search does not change the original selected predictors or fit models.
 

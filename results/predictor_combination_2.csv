@@ -1,0 +1,5 @@
+Emergency Services,Readmission category,hospitals,mean_score,median_score
+No,At least one better,79,89.58227848101266,90.0
+No,No measures better,111,88.45945945945945,89.0
+Yes,At least one better,1390,88.16762589928058,88.0
+Yes,No measures better,1558,87.40949935815148,88.0

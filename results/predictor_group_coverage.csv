@@ -1,0 +1,16 @@
+groups,number_of_groups,complete_hospitals,percent_of_target_sample
+Hospital characteristics,1,3183,100.0
+Quality performance,1,3014,94.69054351240968
+Clinical outcomes,1,3148,98.90040841972981
+Medicare spending,1,2629,82.59503612943763
+Hospital characteristics + Quality performance,2,3014,94.69054351240968
+Hospital characteristics + Clinical outcomes,2,3148,98.90040841972981
+Hospital characteristics + Medicare spending,2,2629,82.59503612943763
+Quality performance + Clinical outcomes,2,3014,94.69054351240968
+Quality performance + Medicare spending,2,2612,82.06094879044926
+Clinical outcomes + Medicare spending,2,2629,82.59503612943763
+Hospital characteristics + Quality performance + Clinical outcomes,3,3014,94.69054351240968
+Hospital characteristics + Quality performance + Medicare spending,3,2612,82.06094879044926
+Hospital characteristics + Clinical outcomes + Medicare spending,3,2629,82.59503612943763
+Quality performance + Clinical outcomes + Medicare spending,3,2612,82.06094879044926
+Hospital characteristics + Quality performance + Clinical outcomes + Medicare spending,4,2612,82.06094879044926

@@ -1,0 +1,20 @@
+Hospital Ownership,Spending category,hospitals,mean_score,median_score
+Government - Federal,Above sample median,1,,
+Government - Federal,At/below sample median,10,86.6,87.0
+Government - Hospital District or Authority,Above sample median,79,87.41772151898734,88.0
+Government - Hospital District or Authority,At/below sample median,93,87.75268817204301,88.0
+Government - Local,Above sample median,50,87.36,88.0
+Government - Local,At/below sample median,67,88.3731343283582,89.0
+Government - State,Above sample median,18,86.55555555555556,87.0
+Government - State,At/below sample median,20,88.4,89.0
+Physician,Above sample median,16,88.4375,88.5
+Physician,At/below sample median,32,92.75,93.0
+Proprietary,Above sample median,295,84.53220338983051,85.0
+Proprietary,At/below sample median,196,87.39285714285714,87.0
+Tribal,At/below sample median,3,,
+Voluntary non-profit - Church,Above sample median,86,86.93023255813954,87.5
+Voluntary non-profit - Church,At/below sample median,97,88.11340206185567,88.0
+Voluntary non-profit - Other,Above sample median,81,86.37037037037037,87.0
+Voluntary non-profit - Other,At/below sample median,137,88.61313868613139,89.0
+Voluntary non-profit - Private,Above sample median,612,87.04575163398692,87.0
+Voluntary non-profit - Private,At/below sample median,736,87.97961956521739,88.0

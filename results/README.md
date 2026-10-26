@@ -7,3 +7,13 @@ Each row identifies the source, variable, description, interpretation category, 
 Correlations use observed pairwise-complete values among hospitals in the General Information reference list. They do not use imputed values. The target is excluded as a candidate. Administrative identifiers, dates, footnote codes, confidence-limit endpoints, and clinical denominators are excluded. Nominal hospital type and ownership remain descriptive group comparisons, not arbitrary numeric correlations. Binary categories are labeled separately; unrecorded birthing designation is not assumed to mean No, so its observed Y-only coding has insufficient variation.
 
 Categories distinguish other HCAHPS survey measures, overlapping ratings/target transformations, non-HCAHPS numeric candidates, survey reporting characteristics, and binary characteristics. Strong same-survey associations are not evidence of independent clinical effects. Counts of classified/reported measures can reflect reporting coverage and hospital characteristics as well as performance. Correlations use different hospital subsets; many related comparisons increase the possibility of chance findings. No p-value claims, causal claims, validated feature selection, or prediction models are provided. Future model evaluation must repeat any feature selection within training folds.
+
+## Main predictor-group EDA outputs
+
+- `predictor_group_coverage.csv`: observed complete-case counts for each of 15 group combinations; no complete-case restriction is imposed.
+- `selected_predictor_correlations.csv` and `selected_predictor_pair_counts.csv`: Pearson correlations and paired hospital counts for the main numeric variables.
+- `predictor_combination_1.csv`: ownership × spending category.
+- `predictor_combination_2.csv`: emergency services × readmission category.
+- `predictor_combination_3.csv`: hybrid mortality × spending category.
+
+Combination tables use observed targets and grouping variables; sample-median cutoffs are printed in the notebook. Means/medians are suppressed for cells with fewer than 10 hospitals. These are exploratory subgroup summaries, not adjusted effects, interaction tests, or predictive comparisons. The expanded correlation screen above is supplemental background outside the main predictor set.
