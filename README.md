@@ -2,7 +2,7 @@
 
 Research question: To what extent can hospital characteristics, quality-of-care measures, clinical outcomes, and Medicare spending predict overall patient satisfaction at U.S. hospitals?
 
-The completed initial exploration is in `hospital_analysis.ipynb`. It loads the four supplied hospital-level CMS CSV files, displays their actual columns and sample rows, checks hospital identifiers and measure keys, identifies the satisfaction target, compares coverage and reporting periods, and examines missing values. The notebook includes computed findings, tables, and charts. No prediction models are built, no modeling dataset is merged, and no values are imputed.
+The completed initial exploration is in `hospital_analysis.ipynb`. It loads the four supplied hospital-level CMS CSV files, displays their actual columns and sample rows, checks hospital identifiers and measure keys, identifies the satisfaction target, compares coverage and reporting periods, and examines missing values. The notebook includes computed findings, tables, and charts. A descriptive table is joined by Facility ID with one-to-one validation. No prediction models are built and no values are imputed.
 
 ## Data used
 
@@ -14,6 +14,17 @@ The completed initial exploration is in `hospital_analysis.ipynb`. It loads the 
 | `Medicare_Hospital_Spending_Per_Patient-Hospital.csv` | 4,626 |
 
 The source is the [CMS Hospital Data Catalog](https://data.cms.gov/provider-data/topics/hospitals). Local CSVs remain unchanged and are excluded from Git. File hashes in the notebook identify the analyzed downloads. Download and CMS release dates were not provided; measurement periods are inspected directly from the files.
+
+## Selected predictors
+
+The exploration focuses only on:
+
+- Hospital Type, Hospital Ownership, and Emergency Services.
+- Mortality, Safety, and Readmission performance: for each group, Better / (Better + No Different + Worse). Missing counts or zero denominators produce missing proportions. Source counts and reporting coverage are audited.
+- `Hybrid_HWM`, using the outcome file's `Score`.
+- `MSPB-1`, using the spending file's `Score`.
+
+The overall CMS hospital star rating, other HCAHPS predictors, and other individual clinical outcome measures are excluded. The notebook reports predictor availability, satisfaction distributions by hospital characteristics, and pairwise scatterplots and correlations for the selected numeric predictors. Missing targets remain missing; no modeling or imputation is performed.
 
 ## Initial findings
 
