@@ -1,0 +1,39 @@
+# Hospital patient satisfaction: initial data exploration
+
+Research question: To what extent can hospital characteristics, quality-of-care measures, clinical outcomes, and Medicare spending predict overall patient satisfaction at U.S. hospitals?
+
+The completed initial exploration is in `hospital_analysis.ipynb`. It loads the four supplied hospital-level CMS CSV files, displays their actual columns and sample rows, checks hospital identifiers and measure keys, identifies the satisfaction target, compares coverage and reporting periods, and examines missing values. The notebook includes computed findings, tables, and charts. No prediction models are built, no modeling dataset is merged, and no values are imputed.
+
+## Data used
+
+| File in `data/` | Source rows |
+| --- | ---: |
+| `HCAHPS-Hospital.csv` | 325,720 |
+| `Hospital_General_Information.csv` | 5,419 |
+| `Complications_and_Deaths-Hospital.csv` | 95,800 |
+| `Medicare_Hospital_Spending_Per_Patient-Hospital.csv` | 4,626 |
+
+The source is the [CMS Hospital Data Catalog](https://data.cms.gov/provider-data/topics/hospitals). Local CSVs remain unchanged and are excluded from Git. File hashes in the notebook identify the analyzed downloads. Download and CMS release dates were not provided; measurement periods are inspected directly from the files.
+
+## Initial findings
+
+The target is `HCAHPS Linear Mean Value` for `HCAHPS Measure ID == "H_HSP_RATING_LINEAR_SCORE"`, labeled “Overall hospital rating - linear mean score”. There are 4,790 target rows with unique hospital identifiers: 3,183 numeric scores and 1,607 values labeled “Not Available”. Numeric values range from 69 to 98.
+
+The intended target scale is 0–100. It is separate from a hospital star rating or a percentage of patients selecting a response category. These files contain hospital aggregates, not individual patient records.
+
+HCAHPS covers October 2024–September 2025, spending covers calendar year 2024, and outcome measures have several different reporting windows. Missingness and period differences need attention before any later modeling. Blank footnotes, unavailable scores, and structurally inapplicable fields are reported separately. Exact administrative reasons for missing scores remain unresolved without the release's footnote dictionary.
+
+These descriptive findings do not establish predictive accuracy or causation. The full tables, plots, and limitations are in the notebook.
+
+## Reproduce
+
+Use Python 3.9 or later. From this folder:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m jupyterlab hospital_analysis.ipynb
+```
+
+Select the environment's Python kernel and run all cells in order. Keep the supplied filenames in `data/`. The saved notebook includes outputs; rerunning replaces them with results from the current files. Review notebook outputs before sharing because they may include source data.
