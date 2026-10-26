@@ -3,7 +3,7 @@
 ## Project information
 
 - **Project title:** Predicting Patient Satisfaction at U.S. Hospitals
-- **Team members:** Not yet supplied.
+- **Team members:** Emma Chung, Kevin Sun, Anastacia Oliynyk.
 - **Repository URL:** https://github.com/emmchung/Patient-Hospital-Satisfaction
 - **Research question:** To what extent can hospital characteristics, quality-of-care measures, clinical outcomes, and Medicare spending predict overall patient satisfaction at U.S. hospitals?
 - **Current status:** Initial exploration and missing-value preparation complete. Prediction models, cross-validation, and the final report are not complete.
